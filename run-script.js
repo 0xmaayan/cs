@@ -27,26 +27,27 @@ async function main() {
     namedAddresses: {
       MoonCoin: alice.accountAddress.toString(),
     },
-    extraArguments: ["--assume-yes"],
+    extraArguments: ["--assume-yes", "--skip-fetch-latest-git-deps"],
   });
-  const { metadataBytes, byteCode } = getPackageBytesToPublish(
-    "contract/facoin/facoin.json"
-  );
+  console.log("done");
+  // const { metadataBytes, byteCode } = getPackageBytesToPublish(
+  //   "contract/facoin/facoin.json"
+  // );
 
-  console.log("\n===Publishing package===");
-  const transaction = await aptosClient.publishPackageTransaction({
-    account: alice.accountAddress,
-    metadataBytes,
-    moduleBytecode: byteCode,
-  });
-  const response = await aptosClient.signAndSubmitTransaction({
-    signer: alice,
-    transaction,
-  });
-  console.log(`Transaction hash: ${response.hash}`);
-  await aptosClient.waitForTransaction({
-    transactionHash: response.hash,
-  });
+  // console.log("\n===Publishing package===");
+  // const transaction = await aptosClient.publishPackageTransaction({
+  //   account: alice.accountAddress,
+  //   metadataBytes,
+  //   moduleBytecode: byteCode,
+  // });
+  // const response = await aptosClient.signAndSubmitTransaction({
+  //   signer: alice,
+  //   transaction,
+  // });
+  // console.log(`Transaction hash: ${response.hash}`);
+  // await aptosClient.waitForTransaction({
+  //   transactionHash: response.hash,
+  // });
 }
 
 main();
